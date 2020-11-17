@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 
 namespace LibraryApp_WebAPI.Models
 {
-    public class BookAuthor
+    public class LibraryBook
     {
-        
-        [ForeignKey("Author")]
-        public int AuthorId { get; set; }
-        public Author Author { get; set; }
-
-
-        
+        [Key]
+        public string InventoryNumber { get; set; }
         [ForeignKey("Book")]
         public int BookId { get; set; }
         public Book Book { get; set; }
 
+        public bool CurrentlyLoaned { get; set; }
 
     }
 }
