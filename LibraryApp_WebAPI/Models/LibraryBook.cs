@@ -10,7 +10,7 @@ namespace LibraryApp_WebAPI.Models
     public class LibraryBook
     {
         [Key]
-        public string InventoryNumber { get; set; }
+        public long InventoryNumber { get; set; }
         [ForeignKey("Book")]
         public int BookId { get; set; }
         public Book Book { get; set; }
