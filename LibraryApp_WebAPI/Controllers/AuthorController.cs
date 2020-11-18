@@ -11,31 +11,31 @@ namespace LibraryApp_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class AuthorController : ControllerBase
     {
 
         [HttpGet]
-        public ActionResult<IEnumerable<Book>> Get()
+        public ActionResult<IEnumerable<Author>> Get()
         {
-            var people = BookRepository.GetBooks();
+            var people = AuthorRepository.GetAuthors();
             return Ok(people);
         }
 
         [HttpPost]
-        public ActionResult Post(Book book)
+        public ActionResult Post(Author author)
         {
 
-            BookRepository.AddBook(book);
+            AuthorRepository.AddAuthor(author);
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public ActionResult Put(Book book, long id)
+        public ActionResult Put(Author author, long id)
         {
-            var dbBook = BookRepository.GetBook(id);
-            if (dbBook != null)
+            var dbAuthor = AuthorRepository.GetAuthor(id);
+            if (dbAuthor != null)
             {
-                BookRepository.UpdateBook(book);
+                AuthorRepository.UpdateAuthor(author);
                 return Ok();
             }
             return NotFound();
@@ -44,7 +44,7 @@ namespace LibraryApp_WebAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(long id)
         {
-            var success = BookRepository.DeleteBook(id);
+            var success = AuthorRepository.DeleteAuthor(id);
             if (success)
             {
                 return Ok();

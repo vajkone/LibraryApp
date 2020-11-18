@@ -1,5 +1,4 @@
 ﻿using LibraryApp_WebAPI.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,56 +6,56 @@ using System.Threading.Tasks;
 
 namespace LibraryApp_WebAPI.Repositories
 {
-    public class BookRepository
+    public class AuthorRepository
     {
-        public static IList<Book> GetBooks()
+        public static IList<Author> GetAuthors()
         {
 
             using var database = new LibraryContext();
-            var books = database.Books.ToList();
-            return books;
+            var authors = database.Authors.ToList();
+            return authors;
 
 
         }
 
-        public static Book GetBook(long id)
+        public static Author GetAuthor(long id)
         {
 
             using var database = new LibraryContext();
-            var book = database.Books.Where(b => b.BookId == id).FirstOrDefault();
-            return book;
+            var author = database.Authors.Where(b => b.AuthorId == id).FirstOrDefault();
+            return author;
 
 
         }
 
-        public static void AddBook(Book book)
+        public static void AddAuthor(Author author)
         {
             using var database = new LibraryContext();
-            database.Books.Add(book);
+            database.Authors.Add(author);
             database.SaveChanges();
 
         }
 
-        
 
-        public static void UpdateBook(Book book)
+
+        public static void UpdateAuthor(Author author)
         {
             using var database = new LibraryContext();
 
-            database.Books.Update(book);
+            database.Authors.Update(author);
             database.SaveChanges();
 
 
 
         }
 
-        public static bool DeleteBook(long id)
+        public static bool DeleteAuthor(long id)
         {
             using var database = new LibraryContext();
-            var dbBook = database.Books.Where(p => p.BookId == id).FirstOrDefault();
-            if (dbBook != null)
+            var dbAuthor = database.Authors.Where(p => p.AuthorId == id).FirstOrDefault();
+            if (dbAuthor != null)
             {
-                database.Books.Remove(dbBook);
+                database.Authors.Remove(dbAuthor);
                 database.SaveChanges();
                 return true;
             }
