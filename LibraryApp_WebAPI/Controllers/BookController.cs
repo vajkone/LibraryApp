@@ -17,9 +17,44 @@ namespace LibraryApp_WebAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Book>> Get()
         {
-            var people = BookRepository.GetBooks();
-            return Ok(people);
+            var books = BookRepository.GetBooks();
+            return Ok(books);
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Book> Get(long id)
+        {
+            var book = BookRepository.GetBook(id);
+
+
+            if (book != null)
+            {
+                return Ok(book);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet("byAuthor")]
+        public ActionResult<IEnumerable<Book>> Get(string author)
+        {
+
+            //böngészőben get: http://localhost:5000/api/book/byAuthor?author=mark
+
+            var books = BookRepository.GetBooksByAuthor(author);
+            if (books != null)
+            {
+                return Ok(books);
+            }
+            else
+            {
+                return NotFound();
+            }
+            
+        }
+
 
         [HttpPost]
         public ActionResult Post(Book book)

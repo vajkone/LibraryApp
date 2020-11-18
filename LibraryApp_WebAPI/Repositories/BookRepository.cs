@@ -37,7 +37,7 @@ namespace LibraryApp_WebAPI.Repositories
 
         }
 
-        
+
 
         public static void UpdateBook(Book book)
         {
@@ -61,6 +61,30 @@ namespace LibraryApp_WebAPI.Repositories
                 return true;
             }
             return false;
+
+        }
+
+        public static IList<Book> GetBooksByAuthor(string author)
+        {
+            using var database = new LibraryContext();
+            Console.WriteLine(author);
+            var books = database.Books
+                .FromSqlRaw("SELECT * FROM dbo.Books bo join dbo.BookAuthor ba on bo.BookId=ba.BA_BookId " +
+                "join dbo.Authors au on ba.BA_AuthorId=au.AuthorId where au.FirstName={0}",author)
+                .ToList();
+
+           
+                
+                
+
+
+
+
+
+            return books;
+
+
+
 
         }
     }

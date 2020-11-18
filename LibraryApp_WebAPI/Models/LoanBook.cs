@@ -11,16 +11,16 @@ namespace LibraryApp_WebAPI.Models
     {
         
         [ForeignKey("Member")]
-        public int MemberId { get; set; }
+        public int LB_MemberId { get; set; }
         public Member Member { get; set; }
 
         
         [ForeignKey("LibraryBook")]
-        public long InventoryNumber { get; set; }
+        public long LB_InventoryNumber { get; set; }
         public LibraryBook LibraryBook { get; set; }
 
         public DateTime LoanDate { get; set; }
         
-        public DateTime returnDate { get; set; }
+        public DateTime ReturnDate { get; set; }
     }
 }

@@ -11,13 +11,13 @@ namespace LibraryApp_WebAPI.Models
     {
         
         [ForeignKey("Author")]
-        public long AuthorId { get; set; }
+        public long BA_AuthorId { get; set; }
         public Author Author { get; set; }
 
 
         
         [ForeignKey("Book")]
-        public long BookId { get; set; }
+        public long BA_BookId { get; set; }
         public Book Book { get; set; }
 
 

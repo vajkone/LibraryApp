@@ -19,10 +19,10 @@ namespace LibraryApp_WebAPI.Repositories
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<LoanBook>()
-                .HasKey(o => new { o.MemberId, o.InventoryNumber });
+                .HasKey(o => new { o.LB_MemberId, o.LB_InventoryNumber });
 
             modelBuilder.Entity<BookAuthor>()
-                .HasKey(o => new { o.AuthorId, o.BookId });
+                .HasKey(o => new { o.BA_AuthorId, o.BA_BookId });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
