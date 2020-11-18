@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LibraryApp_WebAPI.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class initialCreate2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,7 @@ namespace LibraryApp_WebAPI.Migrations
                 name: "Authors",
                 columns: table => new
                 {
-                    AuthorId = table.Column<int>(type: "int", nullable: false)
+                    AuthorId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -26,7 +26,7 @@ namespace LibraryApp_WebAPI.Migrations
                 name: "Books",
                 columns: table => new
                 {
-                    BookId = table.Column<int>(type: "int", nullable: false)
+                    BookId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ISBN = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -61,8 +61,8 @@ namespace LibraryApp_WebAPI.Migrations
                 name: "BookAuthor",
                 columns: table => new
                 {
-                    AuthorId = table.Column<int>(type: "int", nullable: false),
-                    BookId = table.Column<int>(type: "int", nullable: false)
+                    AuthorId = table.Column<long>(type: "bigint", nullable: false),
+                    BookId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,7 +87,7 @@ namespace LibraryApp_WebAPI.Migrations
                 {
                     InventoryNumber = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BookId = table.Column<int>(type: "int", nullable: false),
+                    BookId = table.Column<long>(type: "bigint", nullable: false),
                     CurrentlyLoaned = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

@@ -9,7 +9,7 @@ namespace LibraryApp_WebAPI.Models
     public class Book
     {
         [Key]
-        public int BookId { get; set; }
+        public long BookId { get; set; }
         public string Title { get; set; }
         public string ISBN { get; set; }
         public string Genre { get; set; }

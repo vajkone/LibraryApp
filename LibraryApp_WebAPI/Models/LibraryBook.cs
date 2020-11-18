@@ -12,7 +12,7 @@ namespace LibraryApp_WebAPI.Models
         [Key]
         public long InventoryNumber { get; set; }
         [ForeignKey("Book")]
-        public int BookId { get; set; }
+        public long BookId { get; set; }
         public Book Book { get; set; }
 
         public bool CurrentlyLoaned { get; set; }

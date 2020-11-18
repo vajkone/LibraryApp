@@ -21,9 +21,9 @@ namespace LibraryApp_WebAPI.Migrations
 
             modelBuilder.Entity("LibraryApp_WebAPI.Models.Author", b =>
                 {
-                    b.Property<int>("AuthorId")
+                    b.Property<long>("AuthorId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .UseIdentityColumn();
 
                     b.Property<DateTime>("DateOfBirth")
@@ -42,9 +42,9 @@ namespace LibraryApp_WebAPI.Migrations
 
             modelBuilder.Entity("LibraryApp_WebAPI.Models.Book", b =>
                 {
-                    b.Property<int>("BookId")
+                    b.Property<long>("BookId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .UseIdentityColumn();
 
                     b.Property<string>("Genre")
@@ -72,11 +72,11 @@ namespace LibraryApp_WebAPI.Migrations
 
             modelBuilder.Entity("LibraryApp_WebAPI.Models.BookAuthor", b =>
                 {
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
+                    b.Property<long>("AuthorId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
+                    b.Property<long>("BookId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("AuthorId", "BookId");
 
@@ -92,8 +92,8 @@ namespace LibraryApp_WebAPI.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
+                    b.Property<long>("BookId")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("CurrentlyLoaned")
                         .HasColumnType("bit");
