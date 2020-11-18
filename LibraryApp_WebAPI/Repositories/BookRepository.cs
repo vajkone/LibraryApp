@@ -73,17 +73,7 @@ namespace LibraryApp_WebAPI.Repositories
                 "join dbo.Authors au on ba.BA_AuthorId=au.AuthorId where au.FirstName={0}",author)
                 .ToList();
 
-           
-                
-                
-
-
-
-
-
             return books;
-
-
 
 
         }
