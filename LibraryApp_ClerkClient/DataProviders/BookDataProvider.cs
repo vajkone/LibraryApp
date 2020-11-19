@@ -48,6 +48,31 @@ namespace LibraryApp_ClerkClient.DataProviders
             }
 
         }
+
+        public static long GetBookByIsbn(string isbn)
+        {
+            // http://localhost:5000/api/book/byISBN?isbn=012012
+
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(_baseurl+"/byISBN?isbn="+isbn).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var rawData = response.Content.ReadAsStringAsync().Result;
+                    var bookId = JsonConvert.DeserializeObject<long>(rawData);
+                    return bookId;
+                }
+                else
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+
+            }
+        }
+
+
+
         public static void UpdateBook(Book book)
         {
 

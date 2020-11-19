@@ -55,6 +55,24 @@ namespace LibraryApp_WebAPI.Controllers
             
         }
 
+        [HttpGet("byISBN")]
+        public ActionResult<long> GetId(string isbn)
+        {
+
+            //böngészőben get: http://localhost:5000/api/book/byISBN?isbn=012012
+
+            var bookId = BookRepository.GetBookIdByISBN(isbn);
+            if (bookId != -1)
+            {
+                return Ok(bookId);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
 
         [HttpPost]
         public ActionResult Post(Book book)

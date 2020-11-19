@@ -21,7 +21,8 @@ namespace LibraryApp_ClerkClient.Windows
     {
         private IList<Author> _authors;
         private Book _book;
-        private Author _bookauthor;
+        private Author _author;
+        private BookAuthor _bookAuthor;
     
         public AddBookWindow()
         {
@@ -64,6 +65,14 @@ namespace LibraryApp_ClerkClient.Windows
                 _book.Genre = GenreTextBox.Text;
 
                 BookDataProvider.CreateBook(_book);
+
+                var newBookId = BookDataProvider.GetBookByIsbn(_book.ISBN);
+
+                _bookAuthor = new BookAuthor();
+                _bookAuthor.BA_AuthorId = _author.AuthorId;
+                _bookAuthor.BA_BookId = newBookId;
+
+                BookAuthorDataProvider.CreateBookAuthorLink(_bookAuthor);
 
                 DialogResult = true;
                 Close();
@@ -116,7 +125,7 @@ namespace LibraryApp_ClerkClient.Windows
             }
             else
             {
-                _bookauthor = AuthorComboBox.SelectedItem as Author;
+                _author = AuthorComboBox.SelectedItem as Author;
             }
 
             return true;

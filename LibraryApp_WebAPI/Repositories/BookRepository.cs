@@ -65,10 +65,27 @@ namespace LibraryApp_WebAPI.Repositories
 
         }
 
+        public static long GetBookIdByISBN(string isbn)
+        {
+            using var database = new LibraryContext();
+
+            var book = database.Books.Where(b => b.ISBN == isbn).FirstOrDefault();
+
+            if (book!=null)
+            {
+                return book.BookId;
+            }
+            return -1;
+                
+                
+
+           
+        }
+
         public static IList<Book> GetBooksByAuthor(string author)
         {
             using var database = new LibraryContext();
-            Console.WriteLine(author);
+            
             var books = database.Books
                 .FromSqlRaw("SELECT * FROM dbo.Books bo join dbo.BookAuthor ba on bo.BookId=ba.BA_BookId " +
                 "join dbo.Authors au on ba.BA_AuthorId=au.AuthorId where au.FirstName={0}",author)
