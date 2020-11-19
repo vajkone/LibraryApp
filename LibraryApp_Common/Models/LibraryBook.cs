@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+//using System.ComponentModel.DataAnnotations;
+//using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LibraryApp_WebAPI.Models
+namespace LibraryApp_Common.Models
 {
     public class LibraryBook
     {
-        [Key]
+        //[Key]
         public long InventoryNumber { get; set; }
-        [ForeignKey("Book")]
+        //[ForeignKey("Book")]
         public long LB_BookId { get; set; }
         public Book Book { get; set; }
 
