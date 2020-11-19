@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace LibraryApp_WebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -18,8 +19,11 @@ namespace LibraryApp_WebAPI.Controllers
         public ActionResult<IEnumerable<Author>> Get()
         {
             var people = AuthorRepository.GetAuthors();
+            
             return Ok(people);
         }
+
+        
 
         [HttpPost]
         public ActionResult Post(Author author)

@@ -23,6 +23,13 @@ namespace LibraryApp_ClerkClient
         public MainWindow()
         {
             InitializeComponent();
+            UpdateBooks();
+        }
+
+        private void UpdateBooks()
+        {
+           // _people = PersonDataProvider.GetPeople();
+           // PeopleListBox.ItemsSource = _people;
         }
     }
 }

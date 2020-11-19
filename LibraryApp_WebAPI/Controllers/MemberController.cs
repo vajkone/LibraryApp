@@ -17,7 +17,7 @@ namespace LibraryApp_WebAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Member>> Get()
         {
-            var members = MemberRepository.GetMember();
+            var members = MemberRepository.GetMembers();
             return Ok(members);
         }
 
