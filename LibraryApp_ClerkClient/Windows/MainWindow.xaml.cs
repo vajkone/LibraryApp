@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LibraryApp_ClerkClient.DataProviders;
+using LibraryApp_ClerkClient.Windows;
+using LibraryApp_Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,29 @@ namespace LibraryApp_ClerkClient
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private IList<Book> _books;
         public MainWindow()
         {
             InitializeComponent();
+            UpdateBooks();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new AddBookWindow();
+
+            if (window.ShowDialog() ?? false)
+            {
+                UpdateBooks();
+            }
+        }
+
+
+        private void UpdateBooks()
+        {
+            _books = BookDataProvider.GetBooks();
+            libraryBookList.ItemsSource = _books;
         }
     }
 }

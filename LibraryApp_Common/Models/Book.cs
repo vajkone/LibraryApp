@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +8,7 @@ namespace LibraryApp_Common.Models
 {
     public class Book
     {
-        //[Key]
+        [Key]
         public long BookId { get; set; }
         public string Title { get; set; }
         public string ISBN { get; set; }
@@ -16,6 +16,11 @@ namespace LibraryApp_Common.Models
         public string Publisher { get; set; }
         public DateTime ReleaseDate { get; set; }
         public int Pages { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Title}";
+        }
 
     }
 }
