@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryApp_ClerkClient.Windows"
         mc:Ignorable="d"
-        Title="RegisterAuthorWindow" Height="220" Width="400">
+        Title="RegisterAuthorWindow" Height="240" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -33,6 +33,6 @@
             <DatePicker Grid.Column="1" Grid.Row="2" x:Name="DobPicker" Margin="0 10 10 10"></DatePicker>
 
         </Grid>
-        <Button Grid.Row="1" Content="Register author" Width="100" Height="30" x:Name="RegisterAuthorButton" Margin="0 10 0 10" Click="RegisterAuthorButton_Click"></Button>
+        <Button Grid.Row="1" Content="Register author" Width="100" Height="30" x:Name="RegisterAuthorButton" Margin="0 10 0 0" Click="RegisterAuthorButton_Click"></Button>
     </Grid>
 </Window>

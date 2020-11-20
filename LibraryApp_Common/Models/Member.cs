@@ -15,6 +15,7 @@ namespace LibraryApp_Common.Models
         public string Email { get; set; }
         public string Address { get; set; }
         public DateTime RegistratioNDate { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
     }
 }

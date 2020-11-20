@@ -47,5 +47,15 @@ namespace LibraryApp_ClerkClient
             _books = BookDataProvider.GetBooks();
             libraryBookList.ItemsSource = _books;
         }
+
+        private void RegisterMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new RegisterMemberWindow();
+
+            if (window.ShowDialog() ?? false)
+            {
+                UpdateBooks();
+            }
+        }
     }
 }
