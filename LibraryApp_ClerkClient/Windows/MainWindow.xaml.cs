@@ -83,5 +83,22 @@ namespace LibraryApp_ClerkClient
         {
             AddNewCopyButton.Visibility = Visibility.Collapsed;
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string title; string author; string isbn;
+
+            if (!string.IsNullOrEmpty(SearchByTitleTextBox.Text))
+            {
+                title = SearchByTitleTextBox.Text;
+                _books=BookDataProvider.GetBooksByTitle(title);
+                libraryBookList.ItemsSource = _books;
+            }
+
+            
+
+        }
+
+         
     }
 }

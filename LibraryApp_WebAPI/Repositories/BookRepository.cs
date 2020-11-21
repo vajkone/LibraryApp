@@ -76,10 +76,22 @@ namespace LibraryApp_WebAPI.Repositories
                 return book.BookId;
             }
             return -1;
-                
-                
 
-           
+        }
+
+        public static IList<Book> GetBooksByTitle(string title)
+        {
+            using var database = new LibraryContext();
+
+            
+
+
+
+
+            var books = database.Books.Where(b=>b.Title.Contains(title) || b.Title.StartsWith(title) || b.Title.EndsWith(title))
+               .ToList();
+
+            return books;
         }
 
         public static IList<Book> GetBooksByAuthor(string author)

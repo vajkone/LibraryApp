@@ -73,6 +73,13 @@ namespace LibraryApp_WebAPI.Controllers
 
         }
 
+        [HttpGet("byTitle")]
+        public ActionResult<IList<Book>> GetBooksByTitle(string title)
+        {
+            var books = BookRepository.GetBooksByTitle(title);
+            return Ok(books);
+        }
+
 
         [HttpPost]
         public ActionResult Post(Book book)

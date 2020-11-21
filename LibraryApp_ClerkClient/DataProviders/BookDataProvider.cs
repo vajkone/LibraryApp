@@ -71,6 +71,28 @@ namespace LibraryApp_ClerkClient.DataProviders
             }
         }
 
+        public static IList<Book> GetBooksByTitle(string title)
+        {
+            // http://localhost:5000/api/book/byTitle?title=012012
+
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(_baseurl + "/byTitle?title=" + title).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var rawData = response.Content.ReadAsStringAsync().Result;
+                    var books = JsonConvert.DeserializeObject<IList<Book>>(rawData);
+                    return books;
+                }
+                else
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+
+            }
+        }
+
 
 
         public static void UpdateBook(Book book)
