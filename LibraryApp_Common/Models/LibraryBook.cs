@@ -11,6 +11,7 @@ namespace LibraryApp_Common.Models
     {
         [Key]
         public long InventoryNumber { get; set; }
+
         [ForeignKey("Book")]
         public long LB_BookId { get; set; }
         public Book Book { get; set; }

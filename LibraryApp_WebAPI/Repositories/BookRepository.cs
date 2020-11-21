@@ -83,11 +83,6 @@ namespace LibraryApp_WebAPI.Repositories
         {
             using var database = new LibraryContext();
 
-            
-
-
-
-
             var books = database.Books.Where(b=>b.Title.Contains(title) || b.Title.StartsWith(title) || b.Title.EndsWith(title))
                .ToList();
 

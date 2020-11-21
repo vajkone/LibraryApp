@@ -64,8 +64,18 @@ namespace LibraryApp_ClerkClient
             }
         }
 
-        private void AddNewCopyButton_Click(object sender, RoutedEventArgs e)
+        private void SeeBookInformationButton_Click(object sender, RoutedEventArgs e)
         {
+
+            var selectedbook = libraryBookList.SelectedItem;
+            var window = new BookInformationWindow(selectedbook);
+
+            if (window.ShowDialog() ?? false)
+            {
+                UpdateBooks();
+                libraryBookList.UnselectAll();
+
+            }
 
         }
 
@@ -73,7 +83,7 @@ namespace LibraryApp_ClerkClient
         {
             if (libraryBookList.SelectedIndex > -1)
             {
-                AddNewCopyButton.Visibility = Visibility.Visible;
+                SeeBookInformationButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -81,7 +91,7 @@ namespace LibraryApp_ClerkClient
 
         private void BookList_LostFocus(object sender, RoutedEventArgs e)
         {
-            AddNewCopyButton.Visibility = Visibility.Collapsed;
+            SeeBookInformationButton.Visibility = Visibility.Collapsed;
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
