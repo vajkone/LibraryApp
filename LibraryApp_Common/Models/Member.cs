@@ -9,7 +9,7 @@ namespace LibraryApp_Common.Models
     public class Member
     {
         [Key]
-        public int MemberId { get; set; }
+        public long MemberId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

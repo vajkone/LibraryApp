@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryApp_WebAPI.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20201118090527_initialCreate2")]
-    partial class initialCreate2
+    [Migration("20201121163745_recreateDb")]
+    partial class recreateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace LibraryApp_WebAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.Author", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.Author", b =>
                 {
                     b.Property<long>("AuthorId")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace LibraryApp_WebAPI.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.Book", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.Book", b =>
                 {
                     b.Property<long>("BookId")
                         .ValueGeneratedOnAdd()
@@ -72,71 +72,72 @@ namespace LibraryApp_WebAPI.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.BookAuthor", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.BookAuthor", b =>
                 {
-                    b.Property<long>("AuthorId")
+                    b.Property<long>("BA_AuthorId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("BookId")
+                    b.Property<long>("BA_BookId")
                         .HasColumnType("bigint");
 
-                    b.HasKey("AuthorId", "BookId");
+                    b.HasKey("BA_AuthorId", "BA_BookId");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("BA_BookId");
 
                     b.ToTable("BookAuthor");
                 });
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.LibraryBook", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.LibraryBook", b =>
                 {
-                    b.Property<long>("InventoryNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<long>("BookId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("InventoryNumber")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("CurrentlyLoaned")
                         .HasColumnType("bit");
 
+                    b.Property<long>("LB_BookId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("InventoryNumber");
 
-                    b.HasIndex("BookId");
+                    b.HasIndex("LB_BookId");
 
                     b.ToTable("LibraryBook");
                 });
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.LoanBook", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.LoanBook", b =>
                 {
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<long>("InventoryNumber")
+                    b.Property<long>("LB_MemberId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("LB_InventoryNumber")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("LoanDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("returnDate")
+                    b.Property<DateTime>("ReturnDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("MemberId", "InventoryNumber");
+                    b.HasKey("LB_MemberId", "LB_InventoryNumber");
 
-                    b.HasIndex("InventoryNumber");
+                    b.HasIndex("LB_InventoryNumber");
 
                     b.ToTable("LoanBook");
                 });
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.Member", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.Member", b =>
                 {
-                    b.Property<int>("MemberId")
+                    b.Property<long>("MemberId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .UseIdentityColumn();
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -155,17 +156,17 @@ namespace LibraryApp_WebAPI.Migrations
                     b.ToTable("Members");
                 });
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.BookAuthor", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.BookAuthor", b =>
                 {
-                    b.HasOne("LibraryApp_WebAPI.Models.Author", "Author")
+                    b.HasOne("LibraryApp_Common.Models.Author", "Author")
                         .WithMany()
-                        .HasForeignKey("AuthorId")
+                        .HasForeignKey("BA_AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LibraryApp_WebAPI.Models.Book", "Book")
+                    b.HasOne("LibraryApp_Common.Models.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("BookId")
+                        .HasForeignKey("BA_BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -174,28 +175,28 @@ namespace LibraryApp_WebAPI.Migrations
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.LibraryBook", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.LibraryBook", b =>
                 {
-                    b.HasOne("LibraryApp_WebAPI.Models.Book", "Book")
+                    b.HasOne("LibraryApp_Common.Models.Book", "Book")
                         .WithMany()
-                        .HasForeignKey("BookId")
+                        .HasForeignKey("LB_BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");
                 });
 
-            modelBuilder.Entity("LibraryApp_WebAPI.Models.LoanBook", b =>
+            modelBuilder.Entity("LibraryApp_Common.Models.LoanBook", b =>
                 {
-                    b.HasOne("LibraryApp_WebAPI.Models.LibraryBook", "LibraryBook")
+                    b.HasOne("LibraryApp_Common.Models.LibraryBook", "LibraryBook")
                         .WithMany()
-                        .HasForeignKey("InventoryNumber")
+                        .HasForeignKey("LB_InventoryNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LibraryApp_WebAPI.Models.Member", "Member")
+                    b.HasOne("LibraryApp_Common.Models.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("MemberId")
+                        .HasForeignKey("LB_MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

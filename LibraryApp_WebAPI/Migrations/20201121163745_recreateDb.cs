@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LibraryApp_WebAPI.Migrations
 {
-    public partial class initialCreate2 : Migration
+    public partial class recreateDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,13 +44,14 @@ namespace LibraryApp_WebAPI.Migrations
                 name: "Members",
                 columns: table => new
                 {
-                    MemberId = table.Column<int>(type: "int", nullable: false)
+                    MemberId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RegistratioNDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    RegistratioNDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,21 +62,21 @@ namespace LibraryApp_WebAPI.Migrations
                 name: "BookAuthor",
                 columns: table => new
                 {
-                    AuthorId = table.Column<long>(type: "bigint", nullable: false),
-                    BookId = table.Column<long>(type: "bigint", nullable: false)
+                    BA_AuthorId = table.Column<long>(type: "bigint", nullable: false),
+                    BA_BookId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookAuthor", x => new { x.AuthorId, x.BookId });
+                    table.PrimaryKey("PK_BookAuthor", x => new { x.BA_AuthorId, x.BA_BookId });
                     table.ForeignKey(
-                        name: "FK_BookAuthor_Authors_AuthorId",
-                        column: x => x.AuthorId,
+                        name: "FK_BookAuthor_Authors_BA_AuthorId",
+                        column: x => x.BA_AuthorId,
                         principalTable: "Authors",
                         principalColumn: "AuthorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BookAuthor_Books_BookId",
-                        column: x => x.BookId,
+                        name: "FK_BookAuthor_Books_BA_BookId",
+                        column: x => x.BA_BookId,
                         principalTable: "Books",
                         principalColumn: "BookId",
                         onDelete: ReferentialAction.Cascade);
@@ -85,17 +86,16 @@ namespace LibraryApp_WebAPI.Migrations
                 name: "LibraryBook",
                 columns: table => new
                 {
-                    InventoryNumber = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookId = table.Column<long>(type: "bigint", nullable: false),
+                    InventoryNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LB_BookId = table.Column<long>(type: "bigint", nullable: false),
                     CurrentlyLoaned = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LibraryBook", x => x.InventoryNumber);
                     table.ForeignKey(
-                        name: "FK_LibraryBook_Books_BookId",
-                        column: x => x.BookId,
+                        name: "FK_LibraryBook_Books_LB_BookId",
+                        column: x => x.LB_BookId,
                         principalTable: "Books",
                         principalColumn: "BookId",
                         onDelete: ReferentialAction.Cascade);
@@ -105,42 +105,42 @@ namespace LibraryApp_WebAPI.Migrations
                 name: "LoanBook",
                 columns: table => new
                 {
-                    MemberId = table.Column<int>(type: "int", nullable: false),
-                    InventoryNumber = table.Column<long>(type: "bigint", nullable: false),
+                    LB_MemberId = table.Column<long>(type: "bigint", nullable: false),
+                    LB_InventoryNumber = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     LoanDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    returnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LoanBook", x => new { x.MemberId, x.InventoryNumber });
+                    table.PrimaryKey("PK_LoanBook", x => new { x.LB_MemberId, x.LB_InventoryNumber });
                     table.ForeignKey(
-                        name: "FK_LoanBook_LibraryBook_InventoryNumber",
-                        column: x => x.InventoryNumber,
+                        name: "FK_LoanBook_LibraryBook_LB_InventoryNumber",
+                        column: x => x.LB_InventoryNumber,
                         principalTable: "LibraryBook",
                         principalColumn: "InventoryNumber",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LoanBook_Members_MemberId",
-                        column: x => x.MemberId,
+                        name: "FK_LoanBook_Members_LB_MemberId",
+                        column: x => x.LB_MemberId,
                         principalTable: "Members",
                         principalColumn: "MemberId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BookAuthor_BookId",
+                name: "IX_BookAuthor_BA_BookId",
                 table: "BookAuthor",
-                column: "BookId");
+                column: "BA_BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LibraryBook_BookId",
+                name: "IX_LibraryBook_LB_BookId",
                 table: "LibraryBook",
-                column: "BookId");
+                column: "LB_BookId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LoanBook_InventoryNumber",
+                name: "IX_LoanBook_LB_InventoryNumber",
                 table: "LoanBook",
-                column: "InventoryNumber");
+                column: "LB_InventoryNumber");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

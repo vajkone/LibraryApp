@@ -11,12 +11,12 @@ namespace LibraryApp_Common.Models
     {
         
         [ForeignKey("Member")]
-        public int LB_MemberId { get; set; }
+        public long LB_MemberId { get; set; }
         public Member Member { get; set; }
 
         
         [ForeignKey("LibraryBook")]
-        public long LB_InventoryNumber { get; set; }
+        public string LB_InventoryNumber { get; set; }
         public LibraryBook LibraryBook { get; set; }
 
         public DateTime LoanDate { get; set; }

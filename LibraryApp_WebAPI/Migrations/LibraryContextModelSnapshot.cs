@@ -87,10 +87,8 @@ namespace LibraryApp_WebAPI.Migrations
 
             modelBuilder.Entity("LibraryApp_Common.Models.LibraryBook", b =>
                 {
-                    b.Property<long>("InventoryNumber")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
+                    b.Property<string>("InventoryNumber")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("CurrentlyLoaned")
                         .HasColumnType("bit");
@@ -107,11 +105,11 @@ namespace LibraryApp_WebAPI.Migrations
 
             modelBuilder.Entity("LibraryApp_Common.Models.LoanBook", b =>
                 {
-                    b.Property<int>("LB_MemberId")
-                        .HasColumnType("int");
-
-                    b.Property<long>("LB_InventoryNumber")
+                    b.Property<long>("LB_MemberId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("LB_InventoryNumber")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("LoanDate")
                         .HasColumnType("datetime2");
@@ -128,9 +126,9 @@ namespace LibraryApp_WebAPI.Migrations
 
             modelBuilder.Entity("LibraryApp_Common.Models.Member", b =>
                 {
-                    b.Property<int>("MemberId")
+                    b.Property<long>("MemberId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .UseIdentityColumn();
 
                     b.Property<string>("Address")

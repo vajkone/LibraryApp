@@ -29,7 +29,7 @@ namespace LibraryApp_ClerkClient
         {
             InitializeComponent();
             UpdateBooks();
-            AddNewCopyButton.Visibility = Visibility.Collapsed;
+            SeeBookInformationButton.Visibility = Visibility.Collapsed;
 
             
         }
@@ -67,7 +67,7 @@ namespace LibraryApp_ClerkClient
         private void SeeBookInformationButton_Click(object sender, RoutedEventArgs e)
         {
 
-            var selectedbook = libraryBookList.SelectedItem;
+            var selectedbook = libraryBookList.SelectedItem as Book;
             var window = new BookInformationWindow(selectedbook);
 
             if (window.ShowDialog() ?? false)
@@ -88,11 +88,12 @@ namespace LibraryApp_ClerkClient
         }
 
         
-
+        
         private void BookList_LostFocus(object sender, RoutedEventArgs e)
         {
-            SeeBookInformationButton.Visibility = Visibility.Collapsed;
+           // SeeBookInformationButton.Visibility = Visibility.Collapsed;
         }
+        
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {

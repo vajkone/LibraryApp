@@ -10,7 +10,7 @@ namespace LibraryApp_Common.Models
     public class LibraryBook
     {
         [Key]
-        public long InventoryNumber { get; set; }
+        public string InventoryNumber { get; set; }
 
         [ForeignKey("Book")]
         public long LB_BookId { get; set; }

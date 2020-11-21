@@ -24,7 +24,19 @@ namespace LibraryApp_WebAPI.Controllers
             return Ok(people);
         }
 
-        
+        [HttpGet("byBookId")]
+        public ActionResult< Author> GetAuthorByBookId(long bookid)
+        {
+            var dbAuthor = AuthorRepository.GetAuthorByBookId(bookid);
+            if (dbAuthor != null)
+            {
+                return Ok(dbAuthor);
+            }
+            else return NotFound();
+        }
+
+
+
 
         [HttpPost]
         public ActionResult Post(Author author)

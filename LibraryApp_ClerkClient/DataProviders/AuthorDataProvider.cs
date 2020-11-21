@@ -30,6 +30,25 @@ namespace LibraryApp_ClerkClient.DataProviders
             }
         }
 
+        public static Author GetAuthorByBookId(long bookid)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(_baseurl+"/byBookId?bookid="+bookid).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var rawData = response.Content.ReadAsStringAsync().Result;
+                    var author = JsonConvert.DeserializeObject<Author>(rawData);
+                    return author;
+                }
+                else
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+            }
+        }
+
         public static void CreateAuthor(Author author)
         {
 

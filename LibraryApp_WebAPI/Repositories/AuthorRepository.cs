@@ -1,4 +1,5 @@
 ﻿using LibraryApp_Common.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,16 @@ namespace LibraryApp_WebAPI.Repositories
             return author;
 
 
+        }
+
+        public static Author GetAuthorByBookId(long bookid)
+        {
+            using var database = new LibraryContext();
+            var author = database.Authors
+            .FromSqlRaw("SELECT * FROM dbo.Authors au join dbo.BookAuthor ba on au.AuthorId=ba.BA_AuthorId " +
+                "join dbo.Books bo on ba.BA_BookId=bo.BookId where bo.bookId={0}", bookid).FirstOrDefault();
+
+            return author;
         }
 
         public static void AddAuthor(Author author)
