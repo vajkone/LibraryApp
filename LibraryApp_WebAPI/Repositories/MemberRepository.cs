@@ -46,6 +46,21 @@ namespace LibraryApp_WebAPI.Repositories
 
         }
 
+     
+        public static Member GetLoaningMember(string invNum)
+        {
+
+            using var database = new LibraryContext();
+            var member = database.Members
+                .FromSqlRaw("SELECT * FROM dbo.Members me join dbo.LoanBook lb on me.MemberId=lb.LB_MemberId " +
+                "join dbo.LibraryBook lib on lib.InventoryNumber=lb.LB_InventoryNumber where lib.InventoryNumber={0}",invNum).FirstOrDefault();
+
+
+            return member;
+
+
+        }
+
         public static void AddMember(Member member)
         {
             using var database = new LibraryContext();

@@ -45,7 +45,14 @@ namespace LibraryApp_WebAPI.Controllers
             return Ok(members);
         }
 
-        
+        [HttpGet("byInvNum")]
+        public ActionResult<IList<Member>> GetLoaningMember(string invNum)
+        {
+            var member = MemberRepository.GetLoaningMember(invNum);
+            return Ok(member);
+        }
+
+
 
 
 

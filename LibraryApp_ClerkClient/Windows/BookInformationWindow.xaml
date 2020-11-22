@@ -63,7 +63,7 @@
             <Label Content="Copies of the book in the library" FontSize="20" Grid.Column="2" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Height="37" Width="294" Grid.ColumnSpan="3"/>
             <Button Content="Lend book" Grid.Column="2" x:Name="LendBookButton" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="6" VerticalAlignment="Center" Height="35" Width="100" Click="LendBookButton_Click"/>
             <Button Content="Add new copy" Grid.Column="3" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="6" VerticalAlignment="Center" Height="35" Width="100" Click="AddNewCopyButton_Click"/>
-            <Button Content="Check info" Grid.Column="4" HorizontalAlignment="Left" Grid.Row="6" x:Name="CheckInfoButton" VerticalAlignment="Center" Height="35" Width="100" Margin="5,0,0,0" Click="CheckInfoButton_Click"/>
+            <Button Content="Check info" Grid.Column="4" Visibility="Collapsed" HorizontalAlignment="Left" Grid.Row="6" x:Name="CheckInfoButton" VerticalAlignment="Center" Height="35" Width="100" Margin="5,0,0,0" Click="CheckInfoButton_Click"/>
 
 
         </Grid>

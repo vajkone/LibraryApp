@@ -71,6 +71,14 @@ namespace LibraryApp_ClerkClient.Windows
         private void CheckInfoButton_Click(object sender, RoutedEventArgs e)
         {
 
+            if (InventoryListBox.SelectedIndex > -1)
+            {
+                LibraryBook selectedCopy = InventoryListBox.SelectedItem as LibraryBook;
+                var window = new LibraryBookInfoWindow(selectedCopy);
+
+                window.ShowDialog();
+            }
+
         }
 
         private void LendBookButton_Click(object sender, RoutedEventArgs e)
@@ -112,8 +120,13 @@ namespace LibraryApp_ClerkClient.Windows
                 if (selectedCopy.CurrentlyLoaned)
                 {
                     LendBookButton.Content = "Return book";
+                    CheckInfoButton.Visibility = Visibility.Visible;
                 }
-                else LendBookButton.Content = "Lend book";
+                else
+                {
+                    LendBookButton.Content = "Lend book";
+                    CheckInfoButton.Visibility = Visibility.Collapsed;
+                }
             }
             
         }
