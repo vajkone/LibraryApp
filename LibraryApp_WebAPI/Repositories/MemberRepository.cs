@@ -19,6 +19,21 @@ namespace LibraryApp_WebAPI.Repositories
 
         }
 
+       
+
+        public static IList<Member> GetMembersByName(string name)
+        {
+
+            using var database = new LibraryContext();
+            var members = database.Members.Where(m => (m.FirstName + " " + m.LastName).Contains(name)
+                                                || (m.FirstName + " " + m.LastName).StartsWith(name)
+                                                || (m.FirstName + " " + m.LastName).EndsWith(name)).ToList();
+                                                
+            return members;
+
+
+        }
+
         public static Member GetMember(long id)
         {
 

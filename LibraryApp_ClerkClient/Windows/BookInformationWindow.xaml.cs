@@ -47,7 +47,7 @@ namespace LibraryApp_ClerkClient.Windows
 
         private void UpdateLibraryBooks()
         {
-           // InventoryListBox.ItemsSource = LibraryBookDataProvider.GetLibraryBooks(_currentbook);
+           InventoryListBox.ItemsSource = LibraryBookDataProvider.GetCopiesOfBook(_currentbook.BookId);
         }
 
         private void RegisterAuthorButton_Click(object sender, RoutedEventArgs e)
@@ -61,6 +61,32 @@ namespace LibraryApp_ClerkClient.Windows
             var inventorynumber = _currentbook.Title.Substring(0, _currentbook.Title.Length / 2) + _currentbook.ISBN + "_" + (InventoryListBox.Items.Count + 1);
             LibraryBook libraryBook = new LibraryBook();
             libraryBook.InventoryNumber = inventorynumber;
+            libraryBook.LB_BookId = _currentbook.BookId;
+            libraryBook.CurrentlyLoaned = false;
+            LibraryBookDataProvider.CreateLibraryBook(libraryBook);
+            UpdateLibraryBooks();
+            
+        }
+
+        private void CheckInfoButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LendBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (InventoryListBox.SelectedIndex>-1)
+            {
+                LibraryBook selectedLibBook = InventoryListBox.SelectedItem as LibraryBook;
+                var window = new LendBookWindow(selectedLibBook);
+
+                if (window.ShowDialog() ?? false)
+                {
+                    UpdateLibraryBooks();
+                }
+            }
+            
         }
     }
 }

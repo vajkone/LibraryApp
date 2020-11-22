@@ -7,14 +7,14 @@ using System.Text;
 
 namespace LibraryApp_ClerkClient.DataProviders
 {
-    class LibraryLibraryBookDataProvider
+    class LibraryBookDataProvider
     {
         private static string _baseurl = "http://localhost:5000/api/librarybook";
-        public static IList<LibraryBook> GetLibraryBooks()
+        public static IList<LibraryBook> GetCopiesOfBook(long bookId)
         {
             using (var client = new HttpClient())
             {
-                var response = client.GetAsync(_baseurl).Result;
+                var response = client.GetAsync(_baseurl+"/"+bookId).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -28,6 +28,8 @@ namespace LibraryApp_ClerkClient.DataProviders
                 }
             }
         }
+
+        
 
         public static void CreateLibraryBook(LibraryBook libraryBook)
         {
@@ -45,6 +47,22 @@ namespace LibraryApp_ClerkClient.DataProviders
 
             }
 
+        }
+
+        public static void LendLibraryBook(LibraryBook libraryBook)
+        {
+            using (var client = new HttpClient())
+            {
+                var rawData = JsonConvert.SerializeObject(libraryBook);
+                var content = new StringContent(rawData, Encoding.UTF8, "application/json");
+
+                var response = client.PutAsync(_baseurl+"/"+libraryBook.InventoryNumber, content).Result;
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+
+            }
         }
     }
 }

@@ -8,21 +8,21 @@ namespace LibraryApp_WebAPI.Repositories
 {
     public class LibraryBookRepository
     {
-        public static IList<LibraryBook> GetLibraryBooks()
+        public static IList<LibraryBook> GetLibraryBooks(long bookid)
         {
 
             using var database = new LibraryContext();
-            var libraryBooks = database.LibraryBook.ToList();
+            var libraryBooks = database.LibraryBook.Where(lb=>lb.LB_BookId==bookid).ToList();
             return libraryBooks;
 
 
         }
 
-        public static LibraryBook GetLibraryBook(long id)
+        public static LibraryBook GetLibraryBook(string invNum)
         {
 
             using var database = new LibraryContext();
-            var libraryBook = database.LibraryBook.Where(b => b.LB_BookId == id).FirstOrDefault();
+            var libraryBook = database.LibraryBook.Where(b => b.InventoryNumber == invNum).FirstOrDefault();
             return libraryBook;
 
 
@@ -34,6 +34,14 @@ namespace LibraryApp_WebAPI.Repositories
             database.LibraryBook.Add(libraryBook);
             database.SaveChanges();
 
+        }
+
+        public static void LendLibraryBook(LibraryBook lbook)
+        {
+            using var database = new LibraryContext();
+            lbook.CurrentlyLoaned = true;
+            database.LibraryBook.Update(lbook);
+            database.SaveChanges();
         }
     }
 }

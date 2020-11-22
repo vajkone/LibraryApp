@@ -14,17 +14,12 @@ namespace LibraryApp_WebAPI.Controllers
     public class LibraryBookController : ControllerBase
     {
 
-        [HttpGet]
-        public ActionResult<IEnumerable<LibraryBook>> Get()
-        {
-            var libraryBook = LibraryBookRepository.GetLibraryBooks();
-            return Ok(libraryBook);
-        }
+
 
         [HttpGet("{id}")]
-        public ActionResult<Book> Get(long id)
+        public ActionResult<LibraryBook> Get(long id)
         {
-            var lbook = LibraryBookRepository.GetLibraryBook(id);
+            var lbook = LibraryBookRepository.GetLibraryBooks(id);
 
 
             if (lbook != null)
@@ -44,5 +39,20 @@ namespace LibraryApp_WebAPI.Controllers
             LibraryBookRepository.AddLibraryBook(lbook);
             return Ok();
         }
+
+        [HttpPut("{invNum}")]
+        public ActionResult Put(string invNum)
+        {
+            var libBook = LibraryBookRepository.GetLibraryBook(invNum);
+
+            if (libBook!=null)
+            {
+                libBook.CurrentlyLoaned = true;
+                LibraryBookRepository.LendLibraryBook(libBook);
+                return Ok();
+            }return NotFound();
+            
+        }
+
     }
 }

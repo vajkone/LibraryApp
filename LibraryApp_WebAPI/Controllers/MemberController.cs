@@ -38,7 +38,14 @@ namespace LibraryApp_WebAPI.Controllers
             }
         }
 
-        
+        [HttpGet("byName")]
+        public ActionResult<IList<Member>> GetMembersByName(string name)
+        {
+            var members = MemberRepository.GetMembersByName(name);
+            return Ok(members);
+        }
+
+
 
 
         [HttpPost]

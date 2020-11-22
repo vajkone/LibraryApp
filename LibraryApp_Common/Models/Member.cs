@@ -17,5 +17,12 @@ namespace LibraryApp_Common.Models
         public DateTime RegistratioNDate { get; set; }
         public DateTime DateOfBirth { get; set; }
 
+        public override string ToString()
+        {
+            return FirstName + " " + LastName + " -- " + Email;
+        }
+
     }
+
+    
 }

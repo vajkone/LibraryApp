@@ -18,5 +18,19 @@ namespace LibraryApp_Common.Models
 
         public bool CurrentlyLoaned { get; set; }
 
+        public override string ToString()
+        {
+            return InventoryNumber+" - "+ (CurrentlyLoaned?"Currently Loaned":"Available");
+        }
+
+        private string GetAvailability()
+        {
+            if (CurrentlyLoaned)
+            {
+                return "Currently loaned";
+            }
+            else return "Available";
+        }
+
     }
 }
