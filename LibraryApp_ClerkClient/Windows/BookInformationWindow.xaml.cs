@@ -107,10 +107,15 @@ namespace LibraryApp_ClerkClient.Windows
         {
             var selectedCopy = InventoryListBox.SelectedItem as LibraryBook;
 
-            if (selectedCopy.CurrentlyLoaned)
+            if (selectedCopy != null)
             {
-                LendBookButton.Content = "Return book";
+                if (selectedCopy.CurrentlyLoaned)
+                {
+                    LendBookButton.Content = "Return book";
+                }
+                else LendBookButton.Content = "Lend book";
             }
+            
         }
     }
 }

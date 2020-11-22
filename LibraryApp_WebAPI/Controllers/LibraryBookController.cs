@@ -47,8 +47,9 @@ namespace LibraryApp_WebAPI.Controllers
 
             if (libBook!=null)
             {
-                libBook.CurrentlyLoaned = true;
-                LibraryBookRepository.LendLibraryBook(libBook);
+                
+                
+                LibraryBookRepository.LendReturnLibraryBook(libBook);
                 return Ok();
             }return NotFound();
             

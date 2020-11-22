@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryApp_ClerkClient.Windows"
         mc:Ignorable="d"
-        Title="ReturnBookWindow" Height="auto" Width="350">
+        Title="ReturnBookWindow" Height="390" Width="350">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="29*"/>
@@ -26,14 +26,14 @@
         <Label Content="Book inventory number:" FontSize="14" Grid.Row="1" HorizontalAlignment="Left" Width="158" Margin="10,10,10,10"/>
         <Label Content="Loan date:" HorizontalAlignment="Left" FontSize="14" Margin="10,10,10,10" Grid.Row="3" Width="85" Height="29" VerticalAlignment="Center"/>
         <Label Content="Lent to: " HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="14" Grid.Row="2" VerticalAlignment="Center" Height="28" Width="64"/>
-        <Label Content="Label" x:Name="lentToLabel" Grid.Row="2" VerticalAlignment="Top" Height="24" Grid.Column="1" Margin="10"/>
-        <Label Content="Label" x:Name="loanDateLabel" Grid.Column="1" Margin="10,10,10,10" Grid.Row="3" VerticalAlignment="Top"/>
-        <Label Content="Return date" HorizontalAlignment="Left" Margin="10,10,10,10" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="85"/>
-        <Label Content="Label" x:Name="returnDateLabel" Grid.Column="1" Margin="10,10,10,10" Grid.Row="4" VerticalAlignment="Center" Height="26"/>
+        <Label Content="Label" x:Name="lentToLabel" Grid.Row="2" Grid.Column="1" Margin="10,10,10,10"/>
+        <Label Content="Label" x:Name="loanDateLabel" Grid.Column="1" Margin="10,10,10,10" Grid.Row="3"/>
+        <Label Content="Expected return date" HorizontalAlignment="Left" Margin="10,10,10,10" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="85"/>
+        <Label Content="Label" x:Name="returnDateLabel" Grid.Column="1" Margin="10,10,10,10" Grid.Row="4"/>
         <Label Content="Late fine to pay:" HorizontalAlignment="Left" Margin="10,10,10,10" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="94"/>
-        <Label Content="Label" x:Name="lateFinetoPayLabel" Grid.Column="1" Margin="10,10,10,10" Grid.Row="5" VerticalAlignment="Center" Height="26"/>
-        <Button Content="Return book" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="6" Width="100" Height="40"/>
-        <Label Content="Label" x:Name="invNumLabel" Grid.Column="1" Margin="10" Grid.Row="1" VerticalAlignment="Center"/>
+        <Label Content="Label" x:Name="lateFinetoPayLabel" Grid.Column="1" Margin="10,10,10,10" Grid.Row="5"/>
+        <Button Content="Return book" x:Name="ReturnBookButton" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="6" Width="100" Height="40" Click="ReturnBookButton_Click" VerticalAlignment="Top"/>
+        <Label Content="Label" x:Name="invNumLabel" Grid.Column="1" Margin="10,10,10,10" Grid.Row="1"/>
 
     </Grid>
 </Window>

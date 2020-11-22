@@ -49,7 +49,7 @@ namespace LibraryApp_ClerkClient.DataProviders
 
         }
 
-        public static void LendLibraryBook(LibraryBook libraryBook)
+        public static void LendReturnLibraryBook(LibraryBook libraryBook)
         {
             using (var client = new HttpClient())
             {
@@ -64,5 +64,7 @@ namespace LibraryApp_ClerkClient.DataProviders
 
             }
         }
+
+        
     }
 }

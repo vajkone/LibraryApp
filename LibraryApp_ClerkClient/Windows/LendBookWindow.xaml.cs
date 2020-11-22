@@ -66,11 +66,12 @@ namespace LibraryApp_ClerkClient.Windows
                 loanBook.LB_InventoryNumber = _currentbook.InventoryNumber;
                 loanBook.LB_MemberId = selectedmember.MemberId;
                 loanBook.LoanDate = DateTime.Now;
-                loanBook.ReturnDate = DateTime.Now.AddDays(14);
-                
+                loanBook.ReturnDate = (DateTime)ReturnDatePicker.SelectedDate;
+
+
 
                 LoanBookDataProvider.CreateLoanBook(loanBook);
-                LibraryBookDataProvider.LendLibraryBook(_currentbook);
+                LibraryBookDataProvider.LendReturnLibraryBook(_currentbook);
 
                 DialogResult = true;
                 Close();

@@ -20,10 +20,14 @@ namespace LibraryApp_ClerkClient.Windows
     public partial class ReturnBookWindow : Window
     {
         private static LibraryBook _libraryBook;
+        private static LoanBook _currentLoanBook;
         public ReturnBookWindow(LibraryBook libraryBook)
         {
             _libraryBook = libraryBook;
+            _currentLoanBook = LoanBookDataProvider.GetLoanBookByInvNum(_libraryBook.InventoryNumber);
+
             InitializeComponent();
+            FillOutFields();
         }
 
         private void FillOutFields()
@@ -31,13 +35,12 @@ namespace LibraryApp_ClerkClient.Windows
             invNumLabel.Content = _libraryBook.InventoryNumber;
 
             //var loaningMemberId= LoanBookDataProvider.GetMemberIdByLoanBook(_libraryBook.InventoryNumber);
-            var LoanBook = LoanBookDataProvider.GetLoanBookByInvNum(_libraryBook.InventoryNumber);
-
-            var loaningMember = MemberDataProvider.GetMemberById(LoanBook.LB_MemberId);
+            
+            var loaningMember = MemberDataProvider.GetMemberById(_currentLoanBook.LB_MemberId);
             lentToLabel.Content = loaningMember.FirstName + " " + loaningMember.LastName;
-            var loandate = LoanBook.LoanDate;
+            var loandate = _currentLoanBook.LoanDate;
             loanDateLabel.Content = loandate.ToString("g");
-            var returndate = LoanBook.ReturnDate;
+            var returndate = _currentLoanBook.ReturnDate;
             returnDateLabel.Content = returndate.ToString("g");
             if (DateTime.Now>returndate)
             {
@@ -49,6 +52,14 @@ namespace LibraryApp_ClerkClient.Windows
                 lateFinetoPayLabel.Content = "0";
             }
 
+        }
+
+        private void ReturnBookButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoanBookDataProvider.RemoveLoanBook(_currentLoanBook);
+            LibraryBookDataProvider.LendReturnLibraryBook(_libraryBook);
+            DialogResult = true;
+            Close();
         }
     }
 }

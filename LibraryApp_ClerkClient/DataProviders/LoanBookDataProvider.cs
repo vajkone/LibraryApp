@@ -65,5 +65,20 @@ namespace LibraryApp_ClerkClient.DataProviders
                 }
             }
         }
+
+        public static void RemoveLoanBook(LoanBook loanbook)
+        {
+            using (var client = new HttpClient())
+            {
+
+
+                var response = client.DeleteAsync(_baseurl + "/" + loanbook.LB_InventoryNumber).Result;
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+
+            }
+        }
     }
 }

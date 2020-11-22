@@ -34,5 +34,17 @@ namespace LibraryApp_WebAPI.Controllers
             var member = LoanBookRepository.GetMemberIdByLoanBook(invnum);
             return Ok(member);
         }
+
+
+        [HttpDelete("{invNum}")]
+        public ActionResult Delete(string invNum)
+        {
+            var success = LoanBookRepository.DeleteLoanBook(invNum);
+            if (success)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

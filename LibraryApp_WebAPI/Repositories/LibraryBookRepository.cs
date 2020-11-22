@@ -36,11 +36,18 @@ namespace LibraryApp_WebAPI.Repositories
 
         }
 
-        public static void LendLibraryBook(LibraryBook lbook)
+        public static void LendReturnLibraryBook(LibraryBook libBook)
         {
             using var database = new LibraryContext();
-            lbook.CurrentlyLoaned = true;
-            database.LibraryBook.Update(lbook);
+            if (libBook.CurrentlyLoaned)
+            {
+                libBook.CurrentlyLoaned = false;
+            }
+            else
+            {
+                libBook.CurrentlyLoaned = true;
+            }
+            database.LibraryBook.Update(libBook);
             database.SaveChanges();
         }
     }
