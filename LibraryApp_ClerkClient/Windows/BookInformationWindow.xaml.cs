@@ -78,15 +78,39 @@ namespace LibraryApp_ClerkClient.Windows
             
             if (InventoryListBox.SelectedIndex>-1)
             {
-                LibraryBook selectedLibBook = InventoryListBox.SelectedItem as LibraryBook;
-                var window = new LendBookWindow(selectedLibBook);
-
-                if (window.ShowDialog() ?? false)
+                LibraryBook selectedCopy = InventoryListBox.SelectedItem as LibraryBook;
+                if (!selectedCopy.CurrentlyLoaned)
                 {
-                    UpdateLibraryBooks();
+                    var window = new LendBookWindow(selectedCopy);
+
+                    if (window.ShowDialog() ?? false)
+                    {
+                        UpdateLibraryBooks();
+                    }
                 }
+                else
+                {
+                    var window = new ReturnBookWindow(selectedCopy);
+
+                    if (window.ShowDialog() ?? false)
+                    {
+                        UpdateLibraryBooks();
+                    }
+                }
+
+                
             }
             
+        }
+
+        private void InventoryListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedCopy = InventoryListBox.SelectedItem as LibraryBook;
+
+            if (selectedCopy.CurrentlyLoaned)
+            {
+                LendBookButton.Content = "Return book";
+            }
         }
     }
 }

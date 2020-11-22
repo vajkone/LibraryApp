@@ -20,5 +20,19 @@ namespace LibraryApp_WebAPI.Controllers
             LoanBookRepository.AddLoanBook(loanBook);
             return Ok();
         }
+
+        [HttpGet("byInvNum")]
+        public ActionResult<Member> GetLoanBookByInvNum(string invnum)
+        {
+            var member = LoanBookRepository.GetLoanBookByInvNum(invnum);
+            return Ok(member);
+        }
+
+        [HttpGet("byLoanBook")]
+        public ActionResult<Member> GetMemberByLoanBook(string invnum)
+        {
+            var member = LoanBookRepository.GetMemberIdByLoanBook(invnum);
+            return Ok(member);
+        }
     }
 }

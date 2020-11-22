@@ -16,5 +16,20 @@ namespace LibraryApp_WebAPI.Repositories
             database.SaveChanges();
 
         }
+
+        public static long GetMemberIdByLoanBook(string invnum)
+        {
+            using var database = new LibraryContext();
+            var member = database.LoanBook.Where(lb => lb.LB_InventoryNumber == invnum).FirstOrDefault();
+            return member.LB_MemberId;
+
+        }
+
+        public static LoanBook GetLoanBookByInvNum(string invnum)
+        {
+            using var database = new LibraryContext();
+            var lb = database.LoanBook.Where(lb => lb.LB_InventoryNumber == invnum).FirstOrDefault();
+            return lb;
+        }
     }
 }

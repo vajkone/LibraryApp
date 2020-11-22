@@ -1,5 +1,6 @@
 ﻿
 using LibraryApp_Common.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace LibraryApp_WebAPI.Repositories
 
 
         }
+        
 
         public static Member GetMember(long id)
         {

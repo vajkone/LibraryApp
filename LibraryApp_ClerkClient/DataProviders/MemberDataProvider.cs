@@ -49,6 +49,27 @@ namespace LibraryApp_ClerkClient.DataProviders
             }
         }
 
+        public static Member GetMemberById(long id)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(_baseurl + "/" + id).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var rawData = response.Content.ReadAsStringAsync().Result;
+                    var member = JsonConvert.DeserializeObject<Member>(rawData);
+                    return member;
+                }
+                else
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+            }
+        }
+
+        
+
         public static void CreateMember(Member member)
         {
 
