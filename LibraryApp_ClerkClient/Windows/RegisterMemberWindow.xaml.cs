@@ -20,9 +20,19 @@ namespace LibraryApp_ClerkClient.Windows
     public partial class RegisterMemberWindow : Window
     {
         private Member _member;
-        public RegisterMemberWindow()
+        public RegisterMemberWindow(Member member)
         {
             InitializeComponent();
+            if (member!=null)
+            {
+                _member = member;
+                FillOutFields();
+            }
+            else
+            {
+                RegisteredDateTextBox.Content = DateTime.Now.ToString();
+            }
+            
         }
 
         private void AddMemberButton_Click(object sender, RoutedEventArgs e)
@@ -45,6 +55,20 @@ namespace LibraryApp_ClerkClient.Windows
                 Close();
 
             }
+        }
+
+        private void FillOutFields()
+        {
+            TitleLabel.Content = "Checking information of member";
+            ReigsterMemberButton.Visibility = Visibility.Collapsed;
+            FirstNameTextBox.Text = _member.FirstName;
+            LastNameTextBox.Text = _member.LastName;
+            DobPicker.SelectedDate = _member.DateOfBirth;
+            EmailTextBox.Text = _member.Email;
+            AddressTextBox.Text = _member.Address;
+            RegisteredDateTextBox.Content = _member.RegistratioNDate.ToString("g");
+
+
         }
 
         private bool ValidateMember()

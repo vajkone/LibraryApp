@@ -30,6 +30,8 @@ namespace LibraryApp_ClerkClient.Windows
             FillOutFields();
         }
 
+        
+
         private void FillOutFields()
         {
             var invNum= _currentLibraryBook.InventoryNumber;
@@ -52,6 +54,13 @@ namespace LibraryApp_ClerkClient.Windows
                 CurrentLateFeeLabel.Content = "0";
             }
 
+        }
+
+        private void LentToLabel_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new RegisterMemberWindow(_loaningMember);
+
+            window.ShowDialog();
         }
     }
 }

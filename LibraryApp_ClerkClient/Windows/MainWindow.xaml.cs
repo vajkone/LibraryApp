@@ -25,10 +25,12 @@ namespace LibraryApp_ClerkClient
     {
 
         private IList<Book> _books;
+        private IList<Member> _members;
         public MainWindow()
         {
             InitializeComponent();
             UpdateBooks();
+            UpdateMembers();
             SeeBookInformationButton.Visibility = Visibility.Collapsed;
 
             
@@ -52,13 +54,20 @@ namespace LibraryApp_ClerkClient
             libraryBookList.ItemsSource = _books;
         }
 
+        private void UpdateMembers()
+        {
+            _members = MemberDataProvider.GetMembers();
+            libraryMemberList.ItemsSource = _members;
+        }
+
         private void RegisterMemberButton_Click(object sender, RoutedEventArgs e)
         {
-            var window = new RegisterMemberWindow();
+            var window = new RegisterMemberWindow(null);
 
             if (window.ShowDialog() ?? false)
             {
                 UpdateBooks();
+                UpdateMembers();
                 libraryBookList.UnselectAll();
 
             }
@@ -99,6 +108,11 @@ namespace LibraryApp_ClerkClient
         {
             string title; string author; string isbn;
 
+            if (string.IsNullOrEmpty(SearchByTitleTextBox.Text) && string.IsNullOrEmpty(SearchTermTextBox2.Text) && string.IsNullOrEmpty(SearchTermTextBox3.Text))
+            {
+                UpdateBooks();
+            }
+
             if (!string.IsNullOrEmpty(SearchByTitleTextBox.Text))
             {
                 title = SearchByTitleTextBox.Text;
@@ -110,6 +124,19 @@ namespace LibraryApp_ClerkClient
 
         }
 
-         
+        private void MemberSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchMemberTextBox.Text))
+            {
+                UpdateMembers();
+            }
+            else
+            {
+                string searchsting= SearchMemberTextBox.Text;
+                _members = MemberDataProvider.GetMembersByName(searchsting);
+                libraryMemberList.ItemsSource = _members;
+            }
+
+        }
     }
 }

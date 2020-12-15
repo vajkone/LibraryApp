@@ -26,7 +26,11 @@
         <Label Content="Expected return date:" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,0,0" Height="26" Width="124"/>
         <Label Content="Current late fee: " HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="98"/>
         <Label Content="Label" x:Name="InventoryNumberLabel" Margin="10,2,10,0" VerticalAlignment="Top" Height="26" Grid.Row="1" Grid.ColumnSpan="2"/>
-        <Label Content="Label" Grid.Column="1" x:Name="LentToLabel" Margin="10,10,10,10" Grid.Row="2"/>
+        <TextBlock Grid.Column="1"  Margin="10,10,10,10" Grid.Row="2">
+            <Hyperlink NavigateUri="RegisterMemberWindow.xaml" Click="LentToLabel_Click">
+                <Label x:Name="LentToLabel"/>
+            </Hyperlink>
+        </TextBlock>
         <Label Content="Label" Grid.Column="1"  x:Name="LoanDateLabel" Margin="10,10,10,10" Grid.Row="3"/>
         <Label Content="Label" Grid.Column="1" x:Name="ExpReturnDateLabel" Margin="10,10,10,10" Grid.Row="4"/>
         <Label Content="Label" Grid.Column="1" x:Name="CurrentLateFeeLabel" Margin="10,10,10,10" Grid.Row="5"/>
