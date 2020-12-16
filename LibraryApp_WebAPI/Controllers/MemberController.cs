@@ -45,6 +45,13 @@ namespace LibraryApp_WebAPI.Controllers
             return Ok(members);
         }
 
+        [HttpGet("byFullName")]
+        public ActionResult<Member> GetMemberByFullName(string name)
+        {
+            var member = MemberRepository.GetMemberByFullName(name);
+            return Ok(member);
+        }
+
         [HttpGet("byInvNum")]
         public ActionResult<IList<Member>> GetLoaningMember(string invNum)
         {

@@ -55,6 +55,13 @@ namespace LibraryApp_WebAPI.Controllers
             
         }
 
+        [HttpGet("ofMember")]
+        public ActionResult<IList<Book>> GetBooksOfMember(long id)
+        {
+            var books = BookRepository.GetBooksOfMember(id);
+            return Ok(books);
+        }
+
         [HttpGet("byISBN")]
         public ActionResult<long> GetId(string isbn)
         {

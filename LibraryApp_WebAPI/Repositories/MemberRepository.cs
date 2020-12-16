@@ -34,7 +34,20 @@ namespace LibraryApp_WebAPI.Repositories
 
 
         }
+
+        public static Member GetMemberByFullName(string name)
+        {
+
+            using var database = new LibraryContext();
+            var member = database.Members.Where(m => (m.FirstName + " " + m.LastName) == name).FirstOrDefault();
+                                                
+
+            return member;
+
+
+        }
         
+
 
         public static Member GetMember(long id)
         {

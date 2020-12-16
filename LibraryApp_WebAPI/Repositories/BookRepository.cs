@@ -102,5 +102,19 @@ namespace LibraryApp_WebAPI.Repositories
 
 
         }
+
+        public static IList<Book> GetBooksOfMember(long memberId)
+        {
+            using var database = new LibraryContext();
+            var books = database.Books
+                .FromSqlRaw("SELECT * FROM dbo.Books bo join dbo.LibraryBook lb on bo.BookId=lb.LB_BookId " +
+                "join dbo.LoanBook lobo on lb.InventoryNumber=lobo.LB_InventoryNumber where lobo.LB_MemberId={0}", memberId)
+                .ToList();
+
+
+           
+
+            return books;
+        }
     }
 }
