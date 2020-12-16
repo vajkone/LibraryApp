@@ -19,7 +19,7 @@
 
         </Grid.RowDefinitions>
         <Label Content="Welcome to the library!" HorizontalAlignment="Left" FontSize="20" Margin="73,28,0,0" VerticalAlignment="Top" Grid.Column="1" Height="37" Width="216" Grid.ColumnSpan="2"/>
-        <TextBlock TextWrapping="WrapWithOverflow" Text="Please sign in with your full name to see the books you are currently loaning and to browse the list of the currently available books" TextAlignment="Center" Margin="4,70,12,0" VerticalAlignment="Top"  Height="71" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBlock TextWrapping="WrapWithOverflow" Text="Please sign in with your full name to see the books you have currently borrowed and to browse the list of the available books in our library" TextAlignment="Center" Margin="4,70,12,0" VerticalAlignment="Top"  Height="71" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Label Content="Full name: " HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="26" Width="67"/>
         <TextBox Grid.Column="2" Margin="6,10,22,0" Grid.Row="1" Text="" x:Name="MemberNameTextBox" TextWrapping="Wrap" VerticalAlignment="Top" Height="18"/>
         <Button Content="Sign in" Grid.Column="2" x:Name="SignInButton" Margin="48,59,156,0" Grid.Row="1" VerticalAlignment="Top" Height="32" Click="SignInButton_Click"/>

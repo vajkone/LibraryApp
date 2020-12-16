@@ -1,0 +1,66 @@
+﻿<Window x:Class="LibraryApp_MemberClient.Windows.MemberBookInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryApp_MemberClient.Windows"
+        mc:Ignorable="d"
+        Title="MemberBookInfoWindow" Height="520" Width="340">
+    <Grid>
+        <Grid Grid.Row="0" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="157"/>
+                <ColumnDefinition Width="161"/>
+                <ColumnDefinition Width="57"/>
+
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+
+
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Content="Book title" Margin="10,10,10,10"/>
+
+            <Label Grid.Column="0" Grid.Row="1" Content="ISBN" Margin="10,10,10,10"/>
+
+            <Label Grid.Column="0" Grid.Row="2" Content="Publisher" Margin="10,10,10,10"/>
+
+            <Label Grid.Column="0" Grid.Row="3" Content="Publication date" Margin="10,10,10,10"/>
+
+            <Label Grid.Column="0" Grid.Row="4" Content="Genre" Margin="10,10,10,10"/>
+
+            <Label Grid.Column="0" Grid.Row="5" Content="Pages" Margin="10,10,10,10"/>
+
+            <Label Grid.Column="0" Grid.Row="6" Content="Author" Margin="10,10,10,10"/>
+
+            <TextBlock Grid.Column="1" x:Name="AuthorTB" Grid.Row="6" Text="TextBlock" TextWrapping="Wrap" Margin="0,14,10,6"/>
+            <TextBlock Grid.Column="1" x:Name="PagesTB" Grid.Row="5" Text="TextBlock" TextWrapping="Wrap" Margin="0,13,10,7"/>
+            <TextBlock Grid.Column="1" x:Name="GenreTB" Grid.Row="4" Text="TextBlock" TextWrapping="Wrap" Margin="0,12,10,8"/>
+            <TextBlock Grid.Column="1" x:Name="PublicationDateTB" Grid.Row="3" Text="TextBlock" TextWrapping="Wrap" Margin="0,13,10,7"/>
+            <TextBlock Grid.Column="1" x:Name="publisherTB" Grid.Row="2" Text="TextBlock" TextWrapping="Wrap" Margin="0,13,10,7"/>
+            <TextBlock Grid.Column="1" x:Name="ISBNTB" Grid.Row="1" Text="TextBlock" TextWrapping="Wrap" Margin="1,13,10,7"/>
+            <TextBlock Grid.Column="1" x:Name="BookTitleTB" Text="TextBlock" TextWrapping="Wrap" Margin="0,13,10,7"/>
+            <Label Content="Book borrowed" Margin="10,10,10,10" Grid.Row="8"/>
+            <TextBlock Grid.Column="1" x:Name="BorrowDateTB" Grid.Row="8" Text="TextBlock" TextWrapping="Wrap" Margin="0,14,10,6"/>
+            <Label Content="Expected return date" Margin="10,10,10,10" Grid.Row="9"/>
+            <TextBlock Grid.Column="1" x:Name="ExpectedReturnDateTB" Grid.Row="9" Text="TextBlock" TextWrapping="Wrap" Margin="1,13,10,7"/>
+            <Label Content="Current late fee" Margin="10,10,10,0" Grid.Row="10" VerticalAlignment="Top" Height="26"/>
+            <TextBlock Grid.Column="1" x:Name="CurrentLateFeeTb" Grid.Row="10" Text="TextBlock" TextWrapping="Wrap" Margin="0,13,10,-5"/>
+
+
+        </Grid>
+
+    </Grid>
+</Window>

@@ -5,19 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryApp_MemberClient.Windows"
         mc:Ignorable="d"
-        Title="MemberWindow" Height="450" Width="800">
-    <Grid>
+        Title="MemberWindow" Height="450" Width="700">
+    <Grid Margin="0,0,10,6">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="69*"/>
-            <ColumnDefinition Width="91*"/>
+            <ColumnDefinition Width="337*"/>
+            <ColumnDefinition Width="151*"/>
+            <ColumnDefinition Width="138*"/>
+            <ColumnDefinition Width="73*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="27*"/>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="258*"/>
+            <RowDefinition Height="39*"/>
         </Grid.RowDefinitions>
-        <Label Content="Welcome" x:Name="WelcomeLabel" FontSize="18" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="34" Width="84"/>
-        <ListBox Margin="10,46,46,10" Grid.Row="1" x:Name="BooksLoanedList"/>
-        <Label Content="Books you are currently loaning:" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="289" Height="26"/>
+        <Label Content="Welcome" x:Name="WelcomeLabel" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Height="34" Width="312"/>
+        <ListBox Margin="10,3,10,11" Grid.Row="2" x:Name="BooksLoanedList" SelectionChanged="BookSelected" Grid.RowSpan="2"/>
+        <Label Content="Books you are currently borrowing:" Margin="10,10,10,0" Grid.Row="1" VerticalAlignment="Top" Height="26"/>
+        <Button Content="Check information" Visibility="Hidden" x:Name="CheckInfoButton" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="27" Width="112" Click="CheckInfoButton_Click"/>
+        <ListBox Grid.Column="1" Grid.Row="3" Margin="10,10,10,10" x:Name="LibraryBooksList" Grid.ColumnSpan="2"/>
+        <Label Content="Books in our library:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="115"/>
+        <TextBox  Width="136"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchByTitleTextBox" Height="18" Grid.Row="2" Grid.Column="1" Margin="10,0,0,0"/>
+        <TextBlock IsHitTestVisible="False" Text="Search books by title" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,6,0,0" Padding="6,3,0,0" Foreground="DarkGray" Height="19" Width="116" Grid.Row="2" Grid.Column="1">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=SearchByTitleTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
+        <TextBox  Width="118"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchByAuthorTextBox" Height="18" Grid.Row="2" Grid.Column="2" Margin="5,0,0,0"/>
+        <TextBlock IsHitTestVisible="False" Text="by author" VerticalAlignment="Top" Padding="6,3,0,0" Foreground="DarkGray" Height="19" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Width="98" Margin="4,6,0,0">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=SearchByAuthorTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Button Content="Search" Grid.Column="3" x:Name="SearchButton" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Height="20" Width="52" Click="SearchButton_Click" Margin="0,0,10,0"/>
     </Grid>
 </Window>

@@ -89,6 +89,17 @@ namespace LibraryApp_WebAPI.Repositories
             return books;
         }
 
+        public static Book GetBookByInvNum(string invnum)
+        {
+            using var database = new LibraryContext();
+
+            var book = database.Books
+                .FromSqlRaw("Select * From dbo.Books bo join dbo.LibraryBook lb on bo.BookId=lb.LB_BookId " +
+                "where lb.InventoryNumber={0}", invnum).FirstOrDefault();
+
+            return book;
+        }
+
         public static IList<Book> GetBooksByAuthor(string author)
         {
             using var database = new LibraryContext();
@@ -103,18 +114,39 @@ namespace LibraryApp_WebAPI.Repositories
 
         }
 
-        public static IList<Book> GetBooksOfMember(long memberId)
+        public static Author GetBookAuthorById(long bookid)
         {
             using var database = new LibraryContext();
+            var author = database.Authors
+                .FromSqlRaw("SELECT * FROM dbo.Authors au join dbo.BookAuthor ba on au.AuthorId=ba.BA_AuthorId " +
+                "where ba.BA_BookId={0}", bookid).FirstOrDefault();
+
+            return author;
+
+        }
+        public static IList<LoanBook> GetBooksOfMember(long memberId)
+        {
+            using var database = new LibraryContext();
+            /*
             var books = database.Books
                 .FromSqlRaw("SELECT * FROM dbo.Books bo join dbo.LibraryBook lb on bo.BookId=lb.LB_BookId " +
                 "join dbo.LoanBook lobo on lb.InventoryNumber=lobo.LB_InventoryNumber where lobo.LB_MemberId={0}", memberId)
                 .ToList();
 
+            var librarybooks = database.LibraryBook
+                .FromSqlRaw("SELECT * FROM dbo.LibraryBook lb join dbo.LoanBook lobo on lb.InventoryNumber=lobo.LB_InventoryNumber " +
+                "where lobo.LB_MemberId={0}", memberId)
+                .ToList();
+
+            */
+
+            var loanbooks = database.LoanBook
+                .Where(lb => lb.LB_MemberId == memberId).ToList();
+
 
            
 
-            return books;
+            return loanbooks;
         }
     }
 }
