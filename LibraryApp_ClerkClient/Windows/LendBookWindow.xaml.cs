@@ -83,8 +83,12 @@ namespace LibraryApp_ClerkClient.Windows
 
 
 
-                
 
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a member");
             }
         }
     }
