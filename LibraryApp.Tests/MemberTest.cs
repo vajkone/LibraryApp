@@ -11,6 +11,15 @@ namespace LibraryApp.Tests
         {
             
             Assert.ThrowsException<System.ArgumentException>(() => new Member("TestWrong","     "));
+            
+        }
+
+        [TestMethod]
+        public void CreateMemberWithMoreWhitespace_ShouldThrowArgumentException()
+        {
+
+            Assert.ThrowsException<System.ArgumentException>(() => new Member("       ", "     "));
+
         }
     }
 }
