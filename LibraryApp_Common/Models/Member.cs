@@ -22,6 +22,30 @@ namespace LibraryApp_Common.Models
             return FirstName + " " + LastName + " -- " + Email;
         }
 
+        public Member()
+        {
+
+        }
+
+        public Member(string FirstName, string LastName)
+        {
+            if (string.IsNullOrWhiteSpace(FirstName))
+            {
+                throw new ArgumentException("Must be specified.", nameof(FirstName));
+            }
+
+            if (string.IsNullOrWhiteSpace(LastName))
+            {
+                throw new ArgumentException("Must be specified.", nameof(LastName));
+            }
+
+        }
+
+
+
+
+
+
     }
 
     

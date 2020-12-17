@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryApp_ClerkClient.Windows"
         mc:Ignorable="d"
-        Title="BookInformationWindow" Height="450" Width="700" MinHeight="430" MinWidth="500">
+        Title="BookInformationWindow" Height="470" Width="700" MinHeight="430" MinWidth="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="69*"/>
@@ -68,7 +68,7 @@
 
 
         </Grid>
-        <Button Content="Update book" x:Name="UpdateBook" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" RenderTransformOrigin="-0.568,-0.023" Height="35" Width="98" Click="UpdateBook_Click"/>
+        <Button Content="Update book" x:Name="UpdateBook" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.568,-0.023" Height="35" Width="98" Click="UpdateBook_Click"/>
 
     </Grid>
 </Window>

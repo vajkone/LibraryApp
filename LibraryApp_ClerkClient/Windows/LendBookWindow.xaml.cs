@@ -60,21 +60,30 @@ namespace LibraryApp_ClerkClient.Windows
         {
             if (MemberListBox.SelectedIndex>-1)
             {
-                var selectedmember = MemberListBox.SelectedItem as Member;
+                
+                if ((DateTime)ReturnDatePicker.SelectedDate<DateTime.Now)
+                {
+                    MessageBox.Show("Please select a proper return date");
+                }
+                else
+                {
+                    var selectedmember = MemberListBox.SelectedItem as Member;
 
-                LoanBook loanBook = new LoanBook();
-                loanBook.LB_InventoryNumber = _currentbook.InventoryNumber;
-                loanBook.LB_MemberId = selectedmember.MemberId;
-                loanBook.LoanDate = DateTime.Now;
-                loanBook.ReturnDate = (DateTime)ReturnDatePicker.SelectedDate;
+                    LoanBook loanBook = new LoanBook();
+                    loanBook.LB_InventoryNumber = _currentbook.InventoryNumber;
+                    loanBook.LB_MemberId = selectedmember.MemberId;
+                    loanBook.LoanDate = DateTime.Now;
+                    loanBook.ReturnDate = (DateTime)ReturnDatePicker.SelectedDate;
+                    LoanBookDataProvider.CreateLoanBook(loanBook);
+                    LibraryBookDataProvider.LendReturnLibraryBook(_currentbook);
+
+                    DialogResult = true;
+                    Close();
+                }
 
 
 
-                LoanBookDataProvider.CreateLoanBook(loanBook);
-                LibraryBookDataProvider.LendReturnLibraryBook(_currentbook);
-
-                DialogResult = true;
-                Close();
+                
 
             }
         }
