@@ -65,6 +65,24 @@ namespace LibraryApp_ClerkClient.DataProviders
             }
         }
 
-        
+        public static void RemoveCopy(LibraryBook libraryBook)
+        {
+            using (var client = new HttpClient())
+            {
+
+                var response = client.DeleteAsync(_baseurl + "/" + libraryBook.InventoryNumber).Result;
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+
+
+                
+
+            }
+        }
+
+
+
     }
 }

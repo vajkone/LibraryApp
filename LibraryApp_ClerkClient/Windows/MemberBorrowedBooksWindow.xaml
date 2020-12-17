@@ -1,0 +1,18 @@
+﻿<Window x:Class="LibraryApp_ClerkClient.Windows.MemberBorrowedBooksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryApp_ClerkClient.Windows"
+        mc:Ignorable="d"
+        Title="MemberBorrowedBooksWindow" Height="450" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="192*"/>
+            <RowDefinition Height="25*"/>
+        </Grid.RowDefinitions>
+        <ListBox Margin="10,27,10,10" x:Name="BooksLoanedList"/>
+        <Button Content="More information" x:Name="MoreInfButton" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="28" Width="116" Click="MoreInfButton_Click"/>
+
+    </Grid>
+</Window>

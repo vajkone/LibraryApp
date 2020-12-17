@@ -36,6 +36,19 @@ namespace LibraryApp_WebAPI.Repositories
 
         }
 
+        public static bool DeleteLibraryBook(string invnum)
+        {
+            using var database = new LibraryContext();
+            var dbBook = database.LibraryBook.Where(p => p.InventoryNumber == invnum).FirstOrDefault();
+            if (dbBook != null)
+            {
+                database.LibraryBook.Remove(dbBook);
+                database.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         public static void LendReturnLibraryBook(LibraryBook libBook)
         {
             using var database = new LibraryContext();

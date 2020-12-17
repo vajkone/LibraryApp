@@ -1,5 +1,5 @@
-﻿using LibraryApp_Common.Models;
-using LibraryApp_MemberClient.DataProviders;
+﻿using LibraryApp_ClerkClient.DataProviders;
+using LibraryApp_Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,35 +13,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace LibraryApp_MemberClient.Windows
+namespace LibraryApp_ClerkClient.Windows
 {
     /// <summary>
-    /// Interaction logic for MemberWindow.xaml
+    /// Interaction logic for MemberBorrowedBooksWindow.xaml
     /// </summary>
-    public partial class MemberWindow : Window
+    public partial class MemberBorrowedBooksWindow : Window
     {
+        private static Member _currentMember;
         private static IList<LoanBook> _loanedBooks;
         private static IList<Book> _libraryBooks;
-        private static Member _currentMember;
+        
         private static IList<LoanBookInfo> _loanBookInfos;
-
-
-
-
-        public MemberWindow(Member member)
+        public MemberBorrowedBooksWindow(Member member)
         {
-            _currentMember = member;
+            
             InitializeComponent();
-            WelcomeLabel.Content = "Welcome " + member.FirstName +" " +member.LastName+"!";
+            _currentMember = member;
             UpdateMemberBookList();
-            UpdateLibraryBookList();
         }
 
         private void UpdateMemberBookList()
         {
             _loanedBooks = BookDataProvider.GetBooksOfMember(_currentMember.MemberId);
             _loanBookInfos = new List<LoanBookInfo>();
-            
+
             foreach (var item in _loanedBooks)
             {
                 LoanBookInfo lbinf = new LoanBookInfo();
@@ -64,53 +60,21 @@ namespace LibraryApp_MemberClient.Windows
             BooksLoanedList.ItemsSource = _loanBookInfos;
         }
 
-        private void CheckInfoButton_Click(object sender, RoutedEventArgs e)
+        private void MoreInfButton_Click(object sender, RoutedEventArgs e)
         {
-            LoanBookInfo selected = BooksLoanedList.SelectedItem as LoanBookInfo;
 
-            var window = new MemberBookInfoWindow(selected);
-            window.ShowDialog();
-
-
-        }
-
-        private void BookSelected(object sender, SelectionChangedEventArgs e)
-        {
             if (BooksLoanedList.SelectedIndex>-1)
             {
-                CheckInfoButton.Visibility = Visibility.Visible;
+                LoanBookInfo selected = BooksLoanedList.SelectedItem as LoanBookInfo;
+
+                var window = new MoreBorrowedBookInfoWindow(selected);
+                window.ShowDialog();
             }
-            
-        }
-
-        private void UpdateLibraryBookList()
-        {
-            _libraryBooks = BookDataProvider.GetBooks();
-            LibraryBooksList.ItemsSource = _libraryBooks;
-        }
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            string title;
-            IList<Book> booksbytitle = new List<Book>();
-            
-
-            if (string.IsNullOrEmpty(SearchByTitleTextBox.Text))
+            else
             {
-                UpdateLibraryBookList();
+                MessageBox.Show("Please select the book you want more information on");
             }
-
-            if (!string.IsNullOrEmpty(SearchByTitleTextBox.Text))
-            {
-                title = SearchByTitleTextBox.Text;
-                _libraryBooks = BookDataProvider.GetBooksByTitle(title);
-                LibraryBooksList.ItemsSource = _libraryBooks;
-
-            }
-
             
-
-
         }
     }
 }

@@ -130,5 +130,33 @@ namespace LibraryApp_ClerkClient.Windows
             }
             
         }
+
+        private void UpdateBook_Click(object sender, RoutedEventArgs e)
+        {
+            _currentbook.Title = BookTitleTextBox.Text;
+            _currentbook.ISBN = BookIsbnTextBox.Text;
+            _currentbook.Publisher = PublisherTextBox.Text;
+            _currentbook.ReleaseDate = PublishDatePicker.SelectedDate.Value;
+            _currentbook.Genre = GenreTextBox.Text;
+            _currentbook.Pages = int.Parse(PagesTextBox.Text);
+
+            BookDataProvider.UpdateBook(_currentbook);
+            MessageBox.Show("Book Updated");
+        }
+
+        private void RemoveCopyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCopy = InventoryListBox.SelectedItem as LibraryBook;
+            if (selectedCopy.CurrentlyLoaned)
+            {
+                MessageBox.Show("Cannot remove a copy that is currently being borrowed");
+            }
+            else
+            {
+                LibraryBookDataProvider.RemoveCopy(selectedCopy);
+                UpdateLibraryBooks();
+            }
+            
+        }
     }
 }

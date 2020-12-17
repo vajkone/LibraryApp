@@ -1,9 +1,8 @@
-﻿using LibraryApp_Common.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LibraryApp_MemberClient.Models
+namespace LibraryApp_Common.Models
 {
     public class LoanBookInfo
     {
@@ -20,7 +19,7 @@ namespace LibraryApp_MemberClient.Models
 
         public override string ToString()
         {
-            return this.Title + " - "+Author.FirstName+" "+Author.LastName;
+            return this.Title + " - " + Author.FirstName + " " + Author.LastName;
         }
     }
 }

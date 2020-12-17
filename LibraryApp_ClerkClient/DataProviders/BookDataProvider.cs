@@ -49,6 +49,25 @@ namespace LibraryApp_ClerkClient.DataProviders
 
         }
 
+        public static IList<LoanBook> GetBooksOfMember(long memberId)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(_baseurl + "/ofMember?id=" + memberId).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var rawData = response.Content.ReadAsStringAsync().Result;
+                    var book = JsonConvert.DeserializeObject<IList<LoanBook>>(rawData);
+                    return book;
+                }
+                else
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+            }
+        }
+
         public static long GetBookByIsbn(string isbn)
         {
             // http://localhost:5000/api/book/byISBN?isbn=012012
@@ -93,6 +112,44 @@ namespace LibraryApp_ClerkClient.DataProviders
             }
         }
 
+        public static Book GetBookByInvNum(string invnum)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(_baseurl + "/byInvNum?invnum=" + invnum).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var rawData = response.Content.ReadAsStringAsync().Result;
+                    var book = JsonConvert.DeserializeObject<Book>(rawData);
+                    return book;
+                }
+                else
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+            }
+        }
+
+        public static Author GetBookAuthor(long bookid)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = client.GetAsync(_baseurl + "/authorById?bookid=" + bookid).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var rawData = response.Content.ReadAsStringAsync().Result;
+                    var author = JsonConvert.DeserializeObject<Author>(rawData);
+                    return author;
+                }
+                else
+                {
+                    throw new InvalidOperationException(response.StatusCode.ToString());
+                }
+            }
+        }
+
 
 
         public static void UpdateBook(Book book)
@@ -103,7 +160,7 @@ namespace LibraryApp_ClerkClient.DataProviders
                 var rawData = JsonConvert.SerializeObject(book);
                 var content = new StringContent(rawData, Encoding.UTF8, "application/json");
 
-                var response = client.PutAsync(_baseurl, content).Result;
+                var response = client.PutAsync(_baseurl+"/"+book.BookId, content).Result;
                 if (!response.IsSuccessStatusCode)
                 {
                     throw new InvalidOperationException(response.StatusCode.ToString());

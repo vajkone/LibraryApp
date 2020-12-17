@@ -45,13 +45,28 @@ namespace LibraryApp_WebAPI.Controllers
         {
             var libBook = LibraryBookRepository.GetLibraryBook(invNum);
 
-            if (libBook!=null)
+            if (libBook != null)
             {
-                
-                
+
+
                 LibraryBookRepository.LendReturnLibraryBook(libBook);
                 return Ok();
-            }return NotFound();
+            } return NotFound();
+
+        }
+
+
+        [HttpDelete("{invnum}")]
+        public ActionResult Delete(string invnum)
+        {
+
+            var success = LibraryBookRepository.DeleteLibraryBook(invnum);
+            if (success)
+            {
+                return Ok();
+            }
+            return NotFound();
+
             
         }
 

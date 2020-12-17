@@ -108,7 +108,7 @@ namespace LibraryApp_ClerkClient
         {
             string title; string author; string isbn;
 
-            if (string.IsNullOrEmpty(SearchByTitleTextBox.Text) && string.IsNullOrEmpty(SearchTermTextBox2.Text) && string.IsNullOrEmpty(SearchTermTextBox3.Text))
+            if (string.IsNullOrEmpty(SearchByTitleTextBox.Text))
             {
                 UpdateBooks();
             }
@@ -137,6 +137,14 @@ namespace LibraryApp_ClerkClient
                 libraryMemberList.ItemsSource = _members;
             }
 
+        }
+
+        private void CheckBorroweBooksButton_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedMember = libraryMemberList.SelectedItem as Member;
+            var window = new MemberBorrowedBooksWindow(selectedMember);
+
+            window.Show();
         }
     }
 }

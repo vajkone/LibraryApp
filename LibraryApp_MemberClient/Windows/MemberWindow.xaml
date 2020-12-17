@@ -8,11 +8,11 @@
         Title="MemberWindow" Height="450" Width="700">
     <Grid Margin="0,0,10,6">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="337*"/>
-            <ColumnDefinition Width="151*"/>
-            <ColumnDefinition Width="138*"/>
-            <ColumnDefinition Width="73*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="341*"/>
+            <ColumnDefinition Width="258*"/>
+
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="56*"/>
@@ -27,7 +27,7 @@
         <Button Content="Check information" Visibility="Hidden" x:Name="CheckInfoButton" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="4" VerticalAlignment="Center" Height="27" Width="112" Click="CheckInfoButton_Click"/>
         <ListBox Grid.Column="1" Grid.Row="3" Margin="10,10,10,10" x:Name="LibraryBooksList" Grid.ColumnSpan="2"/>
         <Label Content="Books in our library:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="115"/>
-        <TextBox  Width="136"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchByTitleTextBox" Height="18" Grid.Row="2" Grid.Column="1" Margin="10,0,0,0"/>
+        <TextBox  VerticalAlignment="Center" x:Name="SearchByTitleTextBox" Height="18" Grid.Row="2" Grid.Column="1" Margin="10,0,10,0"/>
         <TextBlock IsHitTestVisible="False" Text="Search books by title" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,6,0,0" Padding="6,3,0,0" Foreground="DarkGray" Height="19" Width="116" Grid.Row="2" Grid.Column="1">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
@@ -40,20 +40,6 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-
-        <TextBox  Width="118"  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="SearchByAuthorTextBox" Height="18" Grid.Row="2" Grid.Column="2" Margin="5,0,0,0"/>
-        <TextBlock IsHitTestVisible="False" Text="by author" VerticalAlignment="Top" Padding="6,3,0,0" Foreground="DarkGray" Height="19" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Width="98" Margin="4,6,0,0">
-            <TextBlock.Style>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=SearchByAuthorTextBox}" Value="">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
-        <Button Content="Search" Grid.Column="3" x:Name="SearchButton" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Height="20" Width="52" Click="SearchButton_Click" Margin="0,0,10,0"/>
+        <Button Content="Search" Grid.Column="2" x:Name="SearchButton" Grid.Row="2" VerticalAlignment="Center" Height="20" Click="SearchButton_Click" Margin="8,0,10,0"/>
     </Grid>
 </Window>

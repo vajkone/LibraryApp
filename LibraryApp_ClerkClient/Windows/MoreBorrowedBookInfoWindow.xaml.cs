@@ -1,5 +1,4 @@
 ﻿using LibraryApp_Common.Models;
-using LibraryApp_MemberClient.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,15 +11,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace LibraryApp_MemberClient.Windows
+namespace LibraryApp_ClerkClient.Windows
 {
     /// <summary>
-    /// Interaction logic for MemberBookInfoWindow.xaml
+    /// Interaction logic for MoreBorrowedBookInfoWindow.xaml
     /// </summary>
-    public partial class MemberBookInfoWindow : Window
+    public partial class MoreBorrowedBookInfoWindow : Window
     {
         private static LoanBookInfo _bookinfo;
-        public MemberBookInfoWindow(LoanBookInfo lbinfo)
+        public MoreBorrowedBookInfoWindow(LoanBookInfo lbinfo)
         {
             InitializeComponent();
             _bookinfo = lbinfo;
@@ -35,10 +34,10 @@ namespace LibraryApp_MemberClient.Windows
             PublicationDateTB.Text = _bookinfo.ReleaseDate.ToString();
             GenreTB.Text = _bookinfo.Genre;
             PagesTB.Text = _bookinfo.Pages.ToString();
-            AuthorTB.Text = _bookinfo.Author.FirstName+" "+_bookinfo.Author.LastName;
+            AuthorTB.Text = _bookinfo.Author.FirstName + " " + _bookinfo.Author.LastName;
             BorrowDateTB.Text = _bookinfo.LoanDate.ToString("g");
             ExpectedReturnDateTB.Text = _bookinfo.ReturnDate.ToString("g");
-            if (DateTime.Now>_bookinfo.ReturnDate)
+            if (DateTime.Now > _bookinfo.ReturnDate)
             {
                 CurrentLateFeeTb.Text = (((DateTime.Now - _bookinfo.ReturnDate).Days) * 100).ToString();
             }
@@ -46,7 +45,7 @@ namespace LibraryApp_MemberClient.Windows
             {
                 CurrentLateFeeTb.Text = "0";
             }
-            
+
 
 
         }
