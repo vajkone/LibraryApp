@@ -44,6 +44,8 @@ namespace LibraryApp_ClerkClient
             {
                 UpdateBooks();
                 libraryBookList.UnselectAll();
+                SeeBookInformationButton.Visibility = Visibility.Collapsed;
+                CheckBorroweBooksButton.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -69,6 +71,8 @@ namespace LibraryApp_ClerkClient
                 UpdateBooks();
                 UpdateMembers();
                 libraryBookList.UnselectAll();
+                CheckBorroweBooksButton.Visibility = Visibility.Collapsed;
+                SeeBookInformationButton.Visibility = Visibility.Collapsed;
 
             }
         }
@@ -144,7 +148,16 @@ namespace LibraryApp_ClerkClient
             var selectedMember = libraryMemberList.SelectedItem as Member;
             var window = new MemberBorrowedBooksWindow(selectedMember);
 
-            window.Show();
+            window.ShowDialog();
+        }
+
+        private void selectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (libraryMemberList.SelectedIndex > -1)
+            {
+                CheckBorroweBooksButton.Visibility = Visibility.Visible;
+
+            }
         }
     }
 }

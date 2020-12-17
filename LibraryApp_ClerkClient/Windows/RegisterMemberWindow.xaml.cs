@@ -40,12 +40,12 @@ namespace LibraryApp_ClerkClient.Windows
             if (ValidateMember())
             {
                 _member = new Member();
-                _member.FirstName = FirstNameTextBox.Text;
-                _member.LastName = LastNameTextBox.Text;
+                _member.FirstName = FirstNameTextBox.Text.Trim();
+                _member.LastName = LastNameTextBox.Text.Trim();
                 _member.DateOfBirth = DobPicker.SelectedDate.Value;
                 _member.RegistratioNDate = DateTime.Now;
-                _member.Email = EmailTextBox.Text;
-                _member.Address = AddressTextBox.Text;
+                _member.Email = EmailTextBox.Text.Trim();
+                _member.Address = AddressTextBox.Text.Trim();
 
                 MemberDataProvider.CreateMember(_member);
 
@@ -73,13 +73,14 @@ namespace LibraryApp_ClerkClient.Windows
 
         private bool ValidateMember()
         {
-            if (string.IsNullOrEmpty(FirstNameTextBox.Text))
+            if (string.IsNullOrWhiteSpace(FirstNameTextBox.Text))
             {
                 MessageBox.Show("First name should not be empty");
                 return false;
             }
+           
 
-            if (string.IsNullOrEmpty(LastNameTextBox.Text))
+            if (string.IsNullOrWhiteSpace(LastNameTextBox.Text))
             {
                 MessageBox.Show("Last name should not be empty");
                 return false;

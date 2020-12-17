@@ -57,10 +57,10 @@ namespace LibraryApp_ClerkClient.Windows
             if (ValidateBook())
             {
                 _book = new Book();
-                _book.Title = BookTitleTextBox.Text;
-                _book.ISBN = BookIsbnTextBox.Text;
+                _book.Title = BookTitleTextBox.Text.Trim();
+                _book.ISBN = BookIsbnTextBox.Text.Trim();
                 _book.ReleaseDate = PublishDatePicker.SelectedDate.Value;
-                _book.Publisher = PublisherTextBox.Text;
+                _book.Publisher = PublisherTextBox.Text.Trim();
                 _book.Pages = int.Parse(PagesTextBox.Text);
                 _book.Genre = GenreTextBox.Text;
 
@@ -106,11 +106,20 @@ namespace LibraryApp_ClerkClient.Windows
                 return false;
             }
 
+            int value;
             if (string.IsNullOrEmpty(PagesTextBox.Text))
             {
                 MessageBox.Show("Please provide the pagecount of the book");
                 return false;
+            }else if (!int.TryParse(PagesTextBox.Text, out value))
+            {
+                MessageBox.Show("Please provide a number for the pagecount");
+                return false;
             }
+             
+             
+
+
 
             if (string.IsNullOrEmpty(GenreTextBox.Text))
             {

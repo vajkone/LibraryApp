@@ -68,7 +68,7 @@
 
 
         </Grid>
-        <Button Content="Update book" x:Name="UpdateBook" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-0.568,-0.023" Height="35" Width="98" Click="UpdateBook_Click"/>
+        <Button Content="Update book" x:Name="UpdateBook" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.Row="2" RenderTransformOrigin="-0.568,-0.023" Width="98" Click="UpdateBook_Click"/>
 
     </Grid>
 </Window>
